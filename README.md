@@ -8,11 +8,14 @@ I found myself doing a project in Scala where I needed to do some JDBC interfaci
  - I was in a bit of a time crunch and did not really have the time to learn how to use the library properly.
  - I was not doing anything complicated; only simple CRUD stuff.
 
-Given these factors, I decided to look for something much more simple and straightforward. All I really wanted was to eliminate the boilerplate of JDBC calls. After doing a quick search, I decided it would be easiest/fastest to just roll my own solution. And here we are. I believe that the code is useful, so I wanted put it out there in case anyone else is in a similar situation to me. Hopefully it will save you some time, and if you're not too familiar with Scala, give you some ideas. There's nothing groundbreaking here, just tight Scala code. Check out the test class for examples on how to use it.
+Given these factors, I decided to look for something much more simple and straightforward. All I really wanted was to eliminate the boilerplate of JDBC calls. After doing a quick search, I decided it would be easiest/fastest to just roll my own solution. And here we are. I believe that the code is useful, so I wanted put it out there in case anyone else is in a similar situation to me. Hopefully it will save you some time, and if you're not too familiar with Scala, give you some ideas. There's nothing groundbreaking here, just tight Scala code.
+
+Check out the test class [SqlUtilsTest] for examples on how to use it.
 
 License
 ----
 
-CC0 Universal
+CC0 1.0 Universal
 
 [ScalikeJDBC]:http://scalikejdbc.org/
+[SqlUtilsTest]:https://github.com/kleggett/sqlutils/blob/master/src/test/scala/com/kleggett/db/util/SqlUtilsTest.scala
