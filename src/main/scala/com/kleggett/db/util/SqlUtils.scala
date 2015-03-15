@@ -160,6 +160,28 @@ object SqlUtils
     }
   }
 
+  def executeBatch[A](con: Connection, sql: String, data: List[A], prepare: (A, PreparedStatement) => Unit, batchSize: Int = Int.MaxValue) = {
+    var psOpt: Option[PreparedStatement] = None
+    try {
+      psOpt = Some(con.prepareStatement(sql))
+      val ps = psOpt.get
+      var count = 0
+      data.foreach(x => {
+        prepare(x, ps)
+        ps.addBatch()
+        count += 1
+        if (count >= batchSize) {
+          ps.executeBatch()
+          count = 0
+        }
+      })
+      ps.executeBatch()
+    }
+    finally {
+      psOpt.foreach(_.close())
+    }
+  }
+
   def resetAndClose(conOpt: Option[Connection]): Unit = {
     conOpt.foreach(c => {
       c.setAutoCommit(true)
