@@ -4,16 +4,16 @@ import java.sql.{PreparedStatement, ResultSet}
 
 import com.kleggett.db.Book
 import com.kleggett.db.DerbyDB._
-import com.kleggett.db.util.SqlUtils._
+import com.kleggett.db.util.ScalaSqlUtils._
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSpec, Matchers}
 
 /**
- * This test class shows some simple examples of how to use the [[SqlUtils]] class.
+ * This test class shows some simple examples of how to use the [[ScalaSqlUtils]] class.
  *
  * @author K. Leggett
  * @since 1.0 (2/28/15 2:54 PM)
  */
-class SqlUtilsTest extends FunSpec with BeforeAndAfterEach with BeforeAndAfterAll with Matchers
+class ScalaSqlUtilsTest extends FunSpec with BeforeAndAfterEach with BeforeAndAfterAll with Matchers
 {
   override protected def beforeAll(): Unit = {
     createTable()
@@ -85,7 +85,7 @@ class SqlUtilsTest extends FunSpec with BeforeAndAfterEach with BeforeAndAfterAl
     })
   }
 
-  describe("SqlUtils")
+  describe("ScalaSqlUtils")
   {
     it ("should be able to insert data")
     {

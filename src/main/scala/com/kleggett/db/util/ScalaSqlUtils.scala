@@ -13,7 +13,7 @@ import org.apache.commons.lang3.time.DateFormatUtils
  * @author K. Leggett
  * @since 1.0 (1/3/15 3:38 PM)
  */
-object SqlUtils
+object ScalaSqlUtils
 {
   val PREPARE_NO_OP = (ps: PreparedStatement) => {}
   val SINGLE_STRING_RS = (rs: ResultSet) => { rs.getString(1) }

@@ -1,4 +1,4 @@
-name := "sqlutils"
+name := "scalasqlutils"
 
 version := "1.0"
 
