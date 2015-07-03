@@ -54,6 +54,17 @@ object ScalaSqlUtils
       }
     }
 
+    def setDateAsTimestampOrNull(index: Int, date: java.util.Date) = {
+      if (date != null) ps.setTimestamp(index, new Timestamp(date.getTime)) else ps.setNull(index, Types.TIMESTAMP)
+    }
+
+    def setDateAsTimestampOrNull(index: Int, date: Option[java.util.Date]) = {
+      date match {
+        case Some(d) => ps.setTimestamp(index, new Timestamp(d.getTime))
+        case None => ps.setNull(index, Types.TIMESTAMP)
+      }
+    }
+
     def setTimestampOrNull(index: Int, ts: Timestamp) = {
       if (ts != null) ps.setTimestamp(index, ts) else ps.setNull(index, Types.TIMESTAMP)
     }
@@ -151,8 +162,8 @@ object ScalaSqlUtils
       psOpt = Some(con.prepareStatement(sql))
       psOpt.foreach(p => prepare(p))
       rsOpt = Some(psOpt.get.executeQuery())
-      rsOpt.foreach(rs => while (rs.next()) results = results :+ mapResult(rs))
-      results
+      rsOpt.foreach(rs => while (rs.next()) results = mapResult(rs) :: results)
+      results.reverse
     }
     finally {
       rsOpt.foreach(_.close())

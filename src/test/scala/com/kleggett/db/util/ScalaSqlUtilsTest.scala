@@ -76,6 +76,7 @@ class ScalaSqlUtilsTest extends FunSpec with BeforeAndAfterEach with BeforeAndAf
     """select title, author, published
       |from books
       |where author = ?
+      |order by title
     """.stripMargin
 
   def booksByAuthor(author: String): List[Book] = {
@@ -129,8 +130,8 @@ class ScalaSqlUtilsTest extends FunSpec with BeforeAndAfterEach with BeforeAndAf
       actuals should have size 2
 
       val titles = actuals.map(_.title)
-      titles.contains("Mistborn") shouldBe true
-      titles.contains("The Well of Ascension") shouldBe true
+      titles.head should equal("Mistborn")
+      titles(1) should equal("The Well of Ascension")
     }
   }
 }
